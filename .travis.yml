@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run stevenvi/docker-react npm run test -- --coverage
+
+deploy: 
+  provider: elasticbeanstalk
+  region: "us-east-1" ## found on aws
+  app: "docker-react" ## found on aws
+  env: "DockerReact-env" ##found on aws
+  bucket_name: "elasticbeanstalk-us-east-1-347903152485" ## found on aws s3 bucket
+  bucket_path: "docker-react"
+  on:
+    branch: master ## deploys only on master branch
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
