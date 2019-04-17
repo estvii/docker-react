@@ -11,6 +11,7 @@ RUN npm run build
 
 #Run phase with Nginx the FROM signifies a new phase
 FROM nginx
+EXPOSE 80
 ## copies over from the builder phase static-directory to nginx location which is /usr/share/nginx/html
 COPY --from=builder /app/build /usr/share/nginx/html
 
